@@ -24,4 +24,21 @@ def friendly_choices(em):
 
 class ClosesTypeEnum(CustomEnum):
     pants = (1, 'Штаны')
-    t_shorts = (2, 'Майки')
+    shorts = (2, 'Шорты')
+    jeans = (3, 'Джинсы')
+
+    t_shorts = (4, 'Майки')
+    sweater = (5, 'Свитер')
+    vest = (6, 'Жилетка')
+    Long_sleeve_shirt = (7, 'Рубашка с длинными рукавами')
+    windbreaker = (8, 'Ветровка')
+    jacket = (9, 'Куртка')
+    fur_coat = (10, 'Шуба')
+    coat = (11, 'Пальто')
+
+    sandals = (12, 'Сандали')
+    boots = (13, 'Ботинки')
+    felt_boots = (14, 'Валенки')
+
+    cap = (15, 'Кепка')
+    hat = (16, 'Шапка')

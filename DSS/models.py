@@ -48,3 +48,38 @@ class Clothes(models.Model):
     allow_wind = models.BooleanField(verbose_name='допускается ношение в ветер')
     temp_resist = models.IntegerField()
     kind = models.ForeignKey(ClosesKind, on_delete=models.CASCADE, related_name='clothes', verbose_name='вид одежды')
+
+
+#def func(array):
+#    sum_array = []
+#    num = 0
+#    for item1 in enumerate(array):
+#        for item2 in enumerate(array):
+#            if item2[0] <= item1[0]:
+#                continue
+#            for item3 in enumerate(array):
+#                if item3[0] <= item2[0]:
+#                    continue
+#                sum_array.append(item1[1] + item2[1] + item3[1])
+#        num += 1
+#
+#    return sum_array
+#
+#
+#def func2(array, target):
+#    array.append(target)
+#    array = sorted(array)
+#    if array.count(target) > 1:
+#        return target
+#    if array[0] == target:
+#        return array[1]
+#    if array[-1] == target:
+#        return array[-2]
+#    if target - array[array.index(target) - 1] < array[array.index(target) + 1] - target:
+#        return array[array.index(target) - 1]
+#    else:
+#        return array[array.index(target) + 1]
+#
+#
+#def func3(array, target):
+#    return func2(func(array), target)
