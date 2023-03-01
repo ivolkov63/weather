@@ -15,4 +15,4 @@ def get_weather_data(lat, lon, key):
 
 def prepare_weather_datetime(dt):
     gmt_time = datetime.datetime.fromtimestamp(dt)
-    return gmt_time
+    return gmt_time + 4
