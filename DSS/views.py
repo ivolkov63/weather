@@ -61,7 +61,7 @@ class PersonView(APIView):
         return Response({'serializer': serializer, 'profile': profile})
 
     def post(self, request, pk):
-        profile = Clothes.objects.create(**request.data)
+        profile = get_object_or_404(Person, pk=pk)
         serializer = self.serializer_class(data=request.data, instance=profile)
         serializer.is_valid()
         serializer.save()
