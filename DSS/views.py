@@ -1,4 +1,4 @@
-from rest_framework import generics, serializers
+from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -8,10 +8,23 @@ from DSS.models import Clothes, Person
 from DSS.serializers import ClothesSerializer
 
 
-class ClothesCreateView(generics.CreateAPIView):
+class ClothesCreateView(APIView):
     serializer_class = ClothesSerializer
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'profile_detail.html'
+
+    def get(self, request, ):
+        profile = Clothes()
+        serializer = self.serializer_class(profile)
+        return Response({'serializer': serializer, 'profile': profile})
+
+    def post(self, request, ):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        profile = serializer.instance
+        profile.__setattr__('name', 'Добавление одежды ')
+        return Response({'serializer': serializer, 'profile': profile})
 
 
 class ClothesView(APIView):
@@ -52,6 +65,8 @@ class PersonView(APIView):
         serializer.is_valid()
         serializer.save()
         profile.__setattr__('name', 'Формирование рекомендаций по подбору одежды ')
+        profile.__setattr__('recommendation_header',
+                            'На основании данных о температуре и одежде формирована рекомендация:')
         profile.__setattr__('recommendation', profile.get_recommendation())
 
         return Response({'serializer': serializer, 'profile': profile})

@@ -5,6 +5,7 @@ import requests
 
 WEATHER_KEY = "a913820bf489df63e3c2055d0916cbfe"
 
+
 def get_weather_data(lat, lon, key):
     data = requests.get(
         f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=hourly,daily&appid={key}&units=metric')
