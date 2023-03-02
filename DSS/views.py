@@ -17,6 +17,9 @@ class ClothesCreateView(APIView):
     def get(self, request, ):
         profile = Clothes()
         serializer = self.serializer_class(profile)
+        profile.__setattr__('name', 'Добавление одежды ')
+        profile.__setattr__('redirect_location', '/recommendation/person/1')
+        profile.__setattr__('redirectLocationName', 'Перейти к формированию рекомендаций')
         return Response({'serializer': serializer, 'profile': profile})
 
     def post(self, request, ):
@@ -25,6 +28,8 @@ class ClothesCreateView(APIView):
         serializer.save()
         profile = serializer.instance
         profile.__setattr__('name', 'Добавление одежды ')
+        profile.__setattr__('redirect_location', '/recommendation/person/1')
+        profile.__setattr__('redirectLocationName', 'Перейти к формированию рекомендаций')
         return Response({'serializer': serializer, 'profile': profile})
 
 
@@ -58,6 +63,8 @@ class PersonView(APIView):
         profile = get_object_or_404(Person, pk=pk)
         profile.__setattr__('name', 'Формирование рекомендаций по подбору одежды ')
         serializer = self.serializer_class(profile)
+        profile.__setattr__('redirect_location', '/recommendation/clothes/create')
+        profile.__setattr__('redirectLocationName', 'Перейти к добавлению одежды')
         return Response({'serializer': serializer, 'profile': profile})
 
     def post(self, request, pk):
@@ -69,5 +76,7 @@ class PersonView(APIView):
         profile.__setattr__('recommendation_header',
                             'На основании данных о температуре и одежде формирована рекомендация:')
         profile.__setattr__('recommendation', profile.get_recommendation())
+        profile.__setattr__('redirect_location', '/recommendation/clothes/create')
+        profile.__setattr__('redirectLocationName', 'Перейти к добавлению одежды')
 
         return Response({'serializer': serializer, 'profile': profile})
