@@ -81,7 +81,7 @@
     {#    {% csrf_token %}#}
     {% render_form serializer template_pack='rest_framework/vertical' %}
         <button type="submit">Сохранить</button>
-    <h1>На основании данных о температуре и одежде формирована рекомендация:</h1>
+    <h1>{{ profile.recommendation_header }}</h1>
     <h2>{{ profile.recommendation }}</h2>
 
 </form>
