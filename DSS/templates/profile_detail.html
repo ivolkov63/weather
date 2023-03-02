@@ -1,0 +1,94 @@
+{% load rest_framework %}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        max-width: 1196px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 60px 76px;
+        font-size: 16px;
+        line-height: 19px;
+        color: #3C3C3C;
+    }
+
+    h1 {
+        margin-bottom: 41px;
+        font-size: 36px;
+        line-height: 38px;
+        letter-spacing: 0.02em;
+    }
+
+    form {
+        padding-right: 77px;
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 21px;
+    }
+
+    input[type="text"] {
+        width: 209px;
+        min-height: 30px;
+        margin-right: 380px;
+        padding: 5px 7px 6px 8px;
+    }
+
+    textarea {
+        height: 116px;
+        padding: 15px 17px 15px 23px;
+    }
+
+    select {
+        min-height: 30px;
+        padding: 15px 10px 15px 23px;
+    }
+
+    textarea,
+    select {
+        width: 589px;
+    }
+
+    option {
+        margin-bottom: 10px;
+        white-space: break-spaces;
+    }
+
+    input,
+    select,
+    textarea {
+        font-family: inherit;
+        font-size: inherit;
+        color: #3C3C3C;
+        border: 1px solid #ADADAD;
+    }
+
+</style>
+
+<html>
+<body>
+
+<h1>{{ profile.name }}</h1>
+
+<form method="post" onsubmit="onSubmit">
+    {#    {% csrf_token %}#}
+    {% render_form serializer template_pack='rest_framework/vertical' %}
+        <button type="submit">Сохранить</button>
+    <h1>На основании данных о температуре и одежде формирована рекомендация:</h1>
+    <h2>{{ profile.recommendation }}</h2>
+
+</form>
+<script type="module">
+    const onSubmit = (e) => {
+        e.preventDefault();
+        console.log(e);
+        return false;
+    }
+</script>

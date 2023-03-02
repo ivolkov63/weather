@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!725^6&vb3vb)tw#(j94lg+0sl(_7#vn-45*^-s!h%_0q%w5*%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '10.10.3.73']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'weather.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'DSS.templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
